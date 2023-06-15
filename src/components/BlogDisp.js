@@ -1,5 +1,6 @@
 import Togglable from './Togglable';
 import Likes from './Likes';
+import Delete from './Delete';
 
 const Blog = ({ blog }) => {
   const blogStyle = {
@@ -10,20 +11,16 @@ const Blog = ({ blog }) => {
     marginBottom: 5,
   }
 
-  const incLikes = target => {
-
-  }
-
   return (
   <div style={blogStyle}>
     {blog.title} {blog.author}
     <Togglable buttonLabel='view'>
       {blog.url} <br />
       likes:
-      {blog.likes} 
-      <Likes handle={incLikes} target={blog.id}/>
+      <Likes target={blog.id} blog={blog}/>
       <br />
       {blog.user.name} <br />
+      <Delete target={blog.id} blog={blog}/>
     </Togglable>
   </div>
   )

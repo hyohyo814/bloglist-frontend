@@ -29,8 +29,8 @@ const create = async (newObj) => {
 };
 
 const update = async (updObj, id) => {
-  console.log(updObj);
-  console.log(id);
+  // console.log(updObj);
+  // console.log(id);
   const config = {
     headers: { Authorization: token },
   };
@@ -39,5 +39,13 @@ const update = async (updObj, id) => {
   return res.data
 }
 
+const remove = async (id) => {
+  const config = {
+    headers: { Authorization: token },
+  };
+  await axios.delete(`${baseUrl}/${id}`, config);
+  console.log('deletion successful');
+}
+
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { getAll, get, create, update, setToken };
+export default { getAll, get, create, update, remove, setToken };
