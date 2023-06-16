@@ -6,7 +6,7 @@ const BlogCreate = ({ handle }) => {
   const [newUrl, setNewUrl] = useState('');
 
   const addBlog = (event) => {
-    event.preventDefault();    
+    event.preventDefault();
     handle({
       title: newTitle,
       author: newAuthor,

@@ -34,18 +34,23 @@ const update = async (updObj, id) => {
   const config = {
     headers: { Authorization: token },
   };
-  const res = await axios.put(`${baseUrl}/${id}`, updObj, config)
-  console.log(res.data)
-  return res.data
-}
+  const res = await axios.put(`${baseUrl}/${id}`, updObj, config);
+  // console.log(res.data)
+  return res.data;
+};
 
 const remove = async (id) => {
+  const check = await axios.get(`${baseUrl}/${id}`);
+  console.log(check);
   const config = {
     headers: { Authorization: token },
   };
+  // console.log(baseUrl)
+  // console.log(id)
+  // console.log(config)
   await axios.delete(`${baseUrl}/${id}`, config);
-  console.log('deletion successful');
-}
+  return console.log('deletion successful');
+};
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default { getAll, get, create, update, remove, setToken };

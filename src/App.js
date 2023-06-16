@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import BlogDisp from './components/BlogDisp';
+import BlogList from './components/BlogList';
 import BlogCreate from './components/BlogCreate';
 import Login from './components/Login';
 import Notification from './components/Notification';
@@ -14,17 +14,15 @@ const App = () => {
     message: null,
     code: null,
   });
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const blogAssignment = async() => {
-      const blog = await blogService.getAll()
-      setBlogs(blog)
+    const blogAssignment = async () => {
+      const blog = await blogService.getAll();
+      setBlogs(blog);
     };
-    blogAssignment()
-      .catch(console.error);
+
+    blogAssignment().catch(console.error);
   }, []);
 
   useEffect(() => {
@@ -47,8 +45,8 @@ const App = () => {
     }, time);
   };
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
+  const handleLogin = async (userObj) => {
+    const { username, password } = userObj;
     console.log(`logging in with ${username} ${password}`);
 
     try {
@@ -61,8 +59,6 @@ const App = () => {
 
       blogService.setToken(user.token);
       setUser(user);
-      setUsername('');
-      setPassword('');
       setNotify({ message: `${user.name} logged in`, code: 'success' });
       resetMsg(3000);
     } catch (exception) {
@@ -72,16 +68,6 @@ const App = () => {
       });
       resetMsg(3000);
     }
-  };
-
-  const handleUNChange = (event) => {
-    console.log(`username: ${event.target.value}`);
-    setUsername(event.target.value);
-  };
-
-  const handlePWChange = (event) => {
-    console.log(`password: ${event.target.value}`);
-    setPassword(event.target.value);
   };
 
   const handleAddBlog = async (blogObj) => {
@@ -118,13 +104,7 @@ const App = () => {
 
   const loginForm = () => (
     <Togglable buttonLabel="login">
-      <Login
-        handle={handleLogin}
-        username={username}
-        password={password}
-        handleUsernameChange={handleUNChange}
-        handlePasswordChange={handlePWChange}
-      />
+      <Login handle={handleLogin} />
     </Togglable>
   );
 
@@ -132,12 +112,10 @@ const App = () => {
     <>
       {user.name} logged in
       <button onClick={handleLogout}>logout</button>
-      <Togglable buttonLabel="new blog" ref={blogFormRef}>
-        <BlogCreate
-          user={user}
-          logout={handleLogout}
-          handle={handleAddBlog}
-        />
+      <Togglable
+        buttonLabel="new blog"
+        ref={blogFormRef}>
+        <BlogCreate handle={handleAddBlog} />
       </Togglable>
     </>
   );
@@ -149,15 +127,8 @@ const App = () => {
         message={notify.message}
         handle={notify.code}
       />
-
-      {user === null ? loginForm() : blogForm()}
-
-      {blogs.map((blog) => (
-        <BlogDisp
-          key={blog.id}
-          blog={blog}
-        />
-      ))}
+      <div>{user === null ? loginForm() : blogForm()}</div>
+      <BlogList blogs={blogs} />
     </div>
   );
 };
