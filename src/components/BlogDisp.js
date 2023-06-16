@@ -1,6 +1,5 @@
-import Togglable from './Togglable';
-import Likes from './Likes';
-import Delete from './Delete';
+import BlogBasic from './BlogBasic';
+import BlogDetails from './BlogDetails';
 
 const BlogDisp = ({ blog }) => {
   const blogStyle = {
@@ -13,21 +12,8 @@ const BlogDisp = ({ blog }) => {
 
   return (
     <div style={blogStyle}>
-      {blog.title} {blog.author}
-      <Togglable buttonLabel="view">
-        {blog.url} <br />
-        likes:
-        <Likes
-          target={blog.id}
-          blog={blog}
-        />
-        <br />
-        {blog.user.name} <br />
-        <Delete
-          target={blog.id}
-          blog={blog}
-        />
-      </Togglable>
+      <BlogBasic blog={blog} />
+      <BlogDetails blog={blog} />
     </div>
   );
 };

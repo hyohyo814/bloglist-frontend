@@ -7,15 +7,14 @@ const Likes = ({ target, blog }) => {
   const handleLikes = async (event) => {
     event.preventDefault();
     console.log(`button clicked on ${target}`);
-    const res = await blogService.get(target);
     // console.log(res.likes);
 
     const newBlogObj = {
-      title: res.title,
-      author: res.author,
-      url: res.url,
-      user: res.user,
-      likes: res.likes + 1,
+      title: blog.title,
+      author: blog.author,
+      url: blog.url,
+      user: blog.user,
+      likes: blog.likes + 1,
     };
 
     const upd = await blogService.update(newBlogObj, target);
@@ -24,10 +23,10 @@ const Likes = ({ target, blog }) => {
   };
 
   return (
-    <>
+    <div className='likebutton'>
       {likes}
       <button onClick={handleLikes}>like</button>
-    </>
+    </div>
   );
 };
 
