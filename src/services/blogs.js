@@ -52,5 +52,4 @@ const remove = async (id) => {
   return console.log('deletion successful')
 }
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export default { getAll, get, create, update, remove, setToken }
