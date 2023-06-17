@@ -1,7 +1,7 @@
 import blogService from '../services/blogs.js';
 import PropTypes from 'prop-types';
 
-const Delete = ({ target, blog }) => {
+const Delete = ({ blog }) => {
   const handleDel = async (event) => {
     event.preventDefault();
     // console.log(target);
@@ -14,15 +14,15 @@ const Delete = ({ target, blog }) => {
       return window.alert('You are not authorized to delete selected post');
     }
     try {
-      const res = await blogService.get(target);
+      const res = await blogService.get(blog.id);
       console.log(res);
       const confirm = window.confirm(
         `Remove blog ${res.title} by ${res.author}`
       );
       if (confirm === true) {
         // console.log('confirmation access')
-        console.log(target);
-        return await blogService.remove(target);
+        console.log(blog.id);
+        return await blogService.remove(blog.id);
       }
       console.log('Deletion cancelled');
       return;
@@ -38,7 +38,6 @@ const Delete = ({ target, blog }) => {
 };
 
 Delete.propTypes = {
-  target: PropTypes.object.isRequired,
   blog: PropTypes.object.isRequired,
 };
 

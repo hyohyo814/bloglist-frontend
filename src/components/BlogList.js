@@ -8,16 +8,14 @@ const BlogList = ({ blogs }) => {
   console.log('blogList function');
 
   const blogsList = _.map(testBlogs, (blog) => (
-    <>
+    <div key={blog.id}>
       <BlogDisp
-        key={blog.id}
         blog={blog}
       />
       <Delete
-        target={blogs.id}
         blog={blog}
       />
-    </>
+    </div>
   ));
   // console.log(blogsList)
   return blogsList;

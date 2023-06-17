@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event'
 import Togglable from './Togglable'
 import BlogDetails from './BlogDetails'
 
+
 describe('<Togglable />', () => {
   const blog = {
     title: 'Hello World',
@@ -16,12 +17,9 @@ describe('<Togglable />', () => {
     },
   }
 
-  let container
-  beforeEach(() => {
-    container = render(<BlogDetails blog={blog}/>).container
-  })
-
   test('renders its children', async () => {
+    const {container} = render(<BlogDetails blog={blog}/>)
+    
     const user = userEvent.setup()
     const button = screen.getByText('view')
     await user.click(button)
@@ -29,6 +27,8 @@ describe('<Togglable />', () => {
     const url = container.querySelector('.urldisplay')
     const likes = container.querySelector('.likesdisplay')
     expect(url).toHaveTextContent('http://example.com')
-    expect(likes).toHaveTextContent('likes:7')
+    expect(likes).toHaveTextContent('likes: 7')
   })
+
+  
 })

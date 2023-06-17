@@ -1,7 +1,7 @@
 import BlogBasic from './BlogBasic';
 import BlogDetails from './BlogDetails';
 
-const BlogDisp = ({ blog }) => {
+const BlogDisp = ({ blog, handleLikes }) => {
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,

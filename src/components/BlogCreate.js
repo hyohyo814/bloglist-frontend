@@ -51,7 +51,7 @@ const BlogCreate = ({ handle }) => {
             placeholder='Url input'
           />
         </div>
-        <button type="submit">create</button>
+        <button type="submit" placeholder="submitBlog">create</button>
       </form>
     </>
   );
