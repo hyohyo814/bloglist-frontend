@@ -7,13 +7,15 @@ const BlogList = ({ blogs }) => {
   const testBlogs = _.orderBy(blogs, ['likes'], ['desc']);
   console.log('blogList function');
 
-  const blogsList = _.map(testBlogs, (blog) => (
-    <div key={blog.id}>
+  const blogsList = _.map(testBlogs, (blog, key) => (
+    <div key={blog.id} id={`blog${key}`}>
       <BlogDisp
         blog={blog}
+        index={key}
       />
       <Delete
         blog={blog}
+        index={key}
       />
     </div>
   ));

@@ -25,6 +25,7 @@ const Login = ({ handle }) => {
           value={username}
           name="Username"
           onChange={(event) => setUsername(event.target.value)}
+          id="username"
         />
       </div>
       <div>
@@ -34,9 +35,10 @@ const Login = ({ handle }) => {
           value={password}
           name="Password"
           onChange={(event) => setPassword(event.target.value)}
+          id="password"
         />
       </div>
-      <button type="submit">login</button>
+      <button id="loginbtn" type="submit">login</button>
     </form>
   );
 };

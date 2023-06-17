@@ -28,7 +28,7 @@ const BlogCreate = ({ handle }) => {
             value={newTitle}
             name="Title"
             onChange={(event) => setNewTitle(event.target.value)}
-            placeholder='Title input'
+            id='titleinp'
           />
         </div>
         <div>
@@ -38,7 +38,7 @@ const BlogCreate = ({ handle }) => {
             value={newAuthor}
             name="Author"
             onChange={(event) => setNewAuthor(event.target.value)}
-            placeholder='Author input'
+            id='authorinp'
           />
         </div>
         <div>
@@ -48,10 +48,10 @@ const BlogCreate = ({ handle }) => {
             value={newUrl}
             name="Url"
             onChange={(event) => setNewUrl(event.target.value)}
-            placeholder='Url input'
+            id='urlinp'
           />
         </div>
-        <button type="submit" placeholder="submitBlog">create</button>
+        <button type="submit" id="submitblog">create</button>
       </form>
     </>
   );

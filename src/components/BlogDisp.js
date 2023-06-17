@@ -1,7 +1,7 @@
 import BlogBasic from './BlogBasic';
 import BlogDetails from './BlogDetails';
 
-const BlogDisp = ({ blog, handleLikes }) => {
+const BlogDisp = ({ blog, index }) => {
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
@@ -13,7 +13,7 @@ const BlogDisp = ({ blog, handleLikes }) => {
   return (
     <div style={blogStyle}>
       <BlogBasic blog={blog} />
-      <BlogDetails blog={blog} />
+      <BlogDetails blog={blog} index={index} />
     </div>
   );
 };

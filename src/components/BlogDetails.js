@@ -3,7 +3,7 @@ import Togglable from './Togglable';
 import Likes from './Likes';
 import blogService from '../services/blogs.js';
 
-const BlogDetails = ({ blog }) => {
+const BlogDetails = ({ blog, index }) => {
   const [likes, setLikes] = useState();
 
   useEffect(() => {
