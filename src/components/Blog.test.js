@@ -1,7 +1,7 @@
-import React from 'react';
-import '@testing-library/jest-dom/extend-expect';
-import { render, screen } from '@testing-library/react';
-import BlogBasic from './BlogBasic';
+import React from 'react'
+import '@testing-library/jest-dom/extend-expect'
+import { render, screen } from '@testing-library/react'
+import BlogBasic from './BlogBasic'
 import userEvent from '@testing-library/user-event'
 
 test('renders content', () => {

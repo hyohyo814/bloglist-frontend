@@ -2,9 +2,7 @@ import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import Togglable from './Togglable'
 import BlogDetails from './BlogDetails'
-
 
 describe('<Togglable />', () => {
   const blog = {
@@ -18,17 +16,15 @@ describe('<Togglable />', () => {
   }
 
   test('renders its children', async () => {
-    const {container} = render(<BlogDetails blog={blog}/>)
-    
+    render(<BlogDetails blog={blog} />)
+
     const user = userEvent.setup()
     const button = screen.getByText('view')
     await user.click(button)
 
-    const url = container.querySelector('.urldisplay')
-    const likes = container.querySelector('.likesdisplay')
+    const url = screen.get('.urldisplay')
+    const likes = screen.get('.likesdisplay')
     expect(url).toHaveTextContent('http://example.com')
     expect(likes).toHaveTextContent('likes: 7')
   })
-
-  
 })

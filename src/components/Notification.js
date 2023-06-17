@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 const Notification = ({ message, handle }) => {
   if (message === null) {
     return null;
@@ -11,6 +9,5 @@ const Notification = ({ message, handle }) => {
     return <div className="error">{message}</div>;
   }
 };
-
 
 export default Notification;
