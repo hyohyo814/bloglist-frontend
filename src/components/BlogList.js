@@ -1,14 +1,19 @@
 import BlogDisp from './BlogDisp'
 import Delete from './Delete'
+import { useSelector, useDispatch } from 'react-redux'
 
 const _ = require('lodash')
 
-const BlogList = ({ blogs }) => {
-  const testBlogs = _.orderBy(blogs, ['likes'], ['desc'])
+const BlogList = () => {
+  const blogs = useSelector((state) => state.blogs)
+
+  // const testBlogs = _.orderBy(blogs, ['likes'], ['desc'])
   console.log('blogList function')
 
-  const blogsList = _.map(testBlogs, (blog, key) => (
-    <div key={blog.id} id={`blog${key}`}>
+  const blogsList = _.map(blogs, (blog, key) => (
+    <div
+      key={blog.id}
+      id={`blog${key}`}>
       <BlogDisp
         blog={blog}
         index={key}

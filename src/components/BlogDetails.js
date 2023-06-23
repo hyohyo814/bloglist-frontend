@@ -1,38 +1,27 @@
-import { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import Togglable from './Togglable'
-import Likes from './Likes'
-import blogService from '../services/blogs.js'
+import { updLikes } from '../reducers/blogReducer'
 
-const BlogDetails = ({ blog, index }) => {
-  const [likes, setLikes] = useState()
-
-  useEffect(() => {
-    setLikes(blog.likes)
-  }, [blog])
+const BlogDetails = ({ blog }) => {
+  const dispatch = useDispatch()
 
   const handleLikes = async (event) => {
     event.preventDefault()
-    // console.log(`button clicked on ${blog.id}`);
-    // console.log(res.likes);
 
     const newBlogObj = {
-      title: blog.title,
-      author: blog.author,
-      url: blog.url,
-      user: blog.user,
-      likes: likes + 1,
+      ...blog,
+      likes: blog.likes + 1,
     }
 
-    await blogService.update(newBlogObj, blog.id)
-    setLikes(likes + 1)
+    dispatch(updLikes(newBlogObj, blog.id))
   }
 
   return (
     <Togglable buttonLabel="view">
       <div className="urldisplay">{blog.url}</div>
       <div className="likesdisplay">
-        likes: {likes}
-        <Likes handle={handleLikes} />
+        likes: {blog.likes}
+        <button onClick={handleLikes} placeholder={'likebtn'}>like</button>
       </div>
       {blog.user.name} <br />
     </Togglable>
