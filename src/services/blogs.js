@@ -8,8 +8,6 @@ const headers = {
   Authorization: user ? `Bearer ${user.token}` : null,
 }
 
-console.log(headers)
-
 const getAll = async () => {
   const res = await axios.get(baseUrl)
   return res.data
@@ -25,6 +23,11 @@ const create = async (newObj) => {
   return res.data
 }
 
+const comment = async (string, id) => {
+  const res = await axios.post(`${baseUrl}/${id}/comments`, { comment: string })
+  return res.data
+}
+
 const update = async (updObj, id) => {
   const res = await axios.put(`${baseUrl}/${id}`, updObj, { headers })
   return res.data
@@ -35,4 +38,4 @@ const remove = async (id) => {
   return console.log('deletion successful')
 }
 
-export default { getAll, get, create, update, remove }
+export default { getAll, get, create, comment, update, remove }

@@ -1,9 +1,8 @@
-import { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setNotif } from '../reducers/notifReducer'
 import { login } from '../reducers/userReducer'
 
-const Login = ({ handle }) => {
+const Login = () => {
   const dispatch = useDispatch()
 
   const handleLogin = (event) => {

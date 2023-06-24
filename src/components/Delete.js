@@ -11,7 +11,6 @@ const Delete = ({ blog }) => {
   const handleDel = async (event) => {
     event.preventDefault()
 
-    console.log(blog.user.username)
     if (!user || user.username !== blog.user.username) {
       return window.alert('You are not authorized to delete selected post')
     }

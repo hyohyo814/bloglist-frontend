@@ -14,7 +14,7 @@ const Notification = () => {
   if (notification.message === null) {
     return null
   }
-  console.log(notification.message)
+
   return <div style={style}>{notification.message}</div>
 }
 

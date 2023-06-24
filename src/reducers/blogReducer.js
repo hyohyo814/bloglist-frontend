@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import blogService from '../services/blogs'
-
-const _ = require('lodash')
+import _ from 'lodash'
 
 const blogSlice = createSlice({
   name: 'blogs',
@@ -13,10 +12,13 @@ const blogSlice = createSlice({
     setPosts(state, action) {
       return _.orderBy(action.payload, ['likes'], ['desc'])
     },
+    updatePost(state, action) {
+      console.log(action.payload)
+    }
   },
 })
 
-export const { appendPost, setPosts } = blogSlice.actions
+export const { appendPost, setPosts, updatePost } = blogSlice.actions
 
 export const initBlogs = () => {
   return async (dispatch) => {
@@ -29,6 +31,14 @@ export const createPost = (content) => {
   return async (dispatch) => {
     const newPost = await blogService.create(content)
     dispatch(appendPost(newPost))
+  }
+}
+
+export const addComment = (content, id) => {
+  return async (dispatch) => {
+    await blogService.comment(content, id)
+    const upd = await blogService.getAll()
+    dispatch(setPosts(upd))
   }
 }
 
